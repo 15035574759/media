@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ThinkPHP5.5测试版本</title>
+</head>
+<body>
+	<center>
+		<h1>ThinkPHP5.5测试版本</h1>
+		<form action="index/test/login" enctype="multipart/form-data" method="post">
+			<table border="1" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>用户名</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>密码</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td>文件</td>
+					<td><input type="file" name="image" /></td>
+				</tr>
+				<tr>
+					<td>验证码</td>
+					<td>
+						<input type="text" name="captcha">
+					</td>
+				</tr>
+					<td colspan="2">
+						<p>验证码: <img id="captcha_img" border='1' src='http://www.qlh6.cn/code/captcha.php?r=echo rand(); ?>' style="width:150px; height:50px" />
+    						<a href="javascript:;" onclick="document.getElementById('captcha_img').src='http://www.qlh6.cn/code/captcha.php?r='+Math.random()">换一个?</a>
+  						</p>
+					</td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">
+						<input type="submit" value="提交">
+						<input type="reset" value="重置"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
+</body>
+</html>

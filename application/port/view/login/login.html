@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="__PUBLIC__/">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <center>
+    <h1></h1>
+    <!-- <form action="{:url('login')}" method="post"> -->
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>用户名</td>
+          <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+          <td>密码</td>
+          <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+          <td>性别</td>
+          <td><input type="radio" name="sex" value="男">男<input type="radio" name="sex" value="女">女</td>
+        </tr>
+        <tr align="center">
+          <td colspan="2">
+            <input type="button" id="GetAdd" value="提交">
+            <input type="reset" value="重置"/>
+          </td>
+        </tr>
+      </table>
+    <!-- </form> -->
+  </center>
+</body>
+</html>
+<script type="text/javascript" src="javascript/skin/js/jquery-3.0.0.js"></script>
+<script type="text/javascript" src="javascript/skin/js/md5.js"></script>
+<script>
+$(function(){
+  $("#GetAdd").click(function(){
+    var name = $("input[name='name']").val();
+    var password = $("input[name='password']").val();
+    var sex = $("input[name='sex']").val();
+    var url = "{:url('login')}";
+    var timestamp = Date.parse(new Date());
+        timestamp = timestamp / 1000; 
+    var key = hex_md5(name + password + timestamp);
+    $.post(url,{name:name,password:password,sex:sex,key:key},function(res){
+      alert(res.code);
+    },'json')
+    
+  })
+})
+</script>

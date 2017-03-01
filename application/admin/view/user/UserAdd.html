@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="__PUBLIC__/">
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="javascript/skin/css/content.css" type="text/css" />
+</head>
+<body>
+	<div class="content">
+		<div class="GetNav">
+			<p style="height:24px;">&nbsp;用户添加&nbsp;</p>
+		</div>
+		<form action="{:url('UserAdd')}" method="post">
+			<table width='98%'  border='0' cellpadding='1' cellspacing='1' align="center" class="tabody">
+				<tr>
+					<td>用户名</td>
+					<td><input type="text" name="username"></td>
+				</tr>
+				<tr>
+					<td>管理员角色</td>
+					<td>
+						<select name="groupid" id="">
+							<option value="0">==请选择==</option>
+							{foreach name="GroupData" item="v"}
+								<option value="{$v.id}">{$v.title}</option>
+							{/foreach}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>密码</td>
+					<td>
+						<input type="password" name="password" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>邮箱</td>
+					<td>
+						<input type="text" name="email" value="">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input class="getSubmit" type="submit" value="提交">
+						<input type="reset" class="getReset" value="重置"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="__PUBLIC__/">
+	<meta charset="UTF-8">
+	<title></title>
+	<!-- 引入时间插件 -->
+    <script type="text/javascript" src="javascript/time/js/laydate.js"></script>
+
+	<link rel="stylesheet" href="javascript/skin/css/content.css" type="text/css" />
+</head>
+<body>
+	<div class="content">
+		<div class="GetNav">
+			<p style="height:24px;">&nbsp;经销商列表&nbsp;</p>
+		</div>
+		<form action="{:url('add')}" method="post">
+			<table width='98%'  border='0' cellpadding='1' cellspacing='1' align="center" class="tabody">
+				<tr>
+					<td>姓名</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>性别</td>
+					<td>
+						<input type="radio" name="sex" value="1">男
+						<input type="radio" name="sex" value="2">女
+					</td>
+				</tr>
+				<tr>
+					<td>手机号</td>
+					<td>
+						<input name="phone" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>邮箱</td>
+					<td>
+						<input name="email" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>项目</td>
+					<td>
+						<select name="project_id">
+							<option value="0">==请选择==</option>
+							{foreach name="ProjectName" item="v"}
+								<option value="{$v.id}">{$v.project_name}</option>
+							{/foreach}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>车系/车型</td>
+					<td>
+						<select name="car_series_id[]" class="GetCar">
+							<option value="">==请选择==</option>
+							{foreach name="data" item="v"}
+								<option value="{$v.car_id}">{$v.car_name}</option>
+							{/foreach}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>购车时间</td>
+					<td>
+						<input type="text" name="car_time" class="inline laydate-icon" id="start">
+					</td>
+				</tr>
+				<tr>
+					<td>选择经销商</td>
+					<td>
+						<select name="dealer_name[]" class="GetDealer">
+							<option value="">==请选择==</option>
+						{foreach name="DealerData" item="v"}
+							<option value="{$v.dealer_id}">{$v.dealer_name}</option>
+						{/foreach}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input class="getSubmit" type="submit" value="提交">
+						<input type="reset" class="getReset" value="重置"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="javascript/time/js/laydatetime.js"></script>
+<script type="text/javascript" src="javascript/skin/js/jquery-3.0.0.js"></script>
+<script>
+ $(function(){
+
+ 	//车系车型
+     $(document).on('change','.GetCar',function(){
+         var car_id = $(this).val();
+         var _this = $(this);
+         // alert(_this);
+         $.ajax({
+             type : 'get',
+             url  : "{:url('CarClass')}",
+             data : {car_id : car_id},
+             dataType : "json",
+             success : function(msg){
+                 // alert(msg);
+                 if(msg.length){
+                    var str = "&nbsp;&nbsp;<select class='GetCar' name='car_series_id[]'>";
+                    $(msg).each(function(k,v){
+                    str +="<option value="+v.car_id+">"+v.car_name+"</option>"
+                    })
+                    str += "</select>";
+                    _this.nextAll().remove();
+                    _this.after(str);
+                 }
+
+             }
+         })
+     })
+
+     //经销商
+      $(document).on('change','.GetDealer',function(){
+         var dealer_id = $(this).val();
+         var _this = $(this);
+         // alert(dealer_id);
+         $.ajax({
+             type : 'get',
+             url  : "{:url('GetDealer')}",
+             data : {dealer_id : dealer_id},
+             dataType : "json",
+             success : function(msg){
+                 if(msg.length < 1){
+                 	 _this.nextAll().remove();
+                 }
+                 if(msg.length){
+                    var str = "&nbsp;&nbsp;<select name='dealer_name[]' class='GetDealer'>";
+                    $(msg).each(function(k,v){
+                    str +="<option value="+v.dealer_id+">"+v.dealer_name+"</option>"
+                    })
+                    str += "</select>";
+                    _this.nextAll().remove();
+                    _this.after(str);
+                 }
+
+             }
+         })
+     })  
+  })
+</script>

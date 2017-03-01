@@ -1,0 +1,21 @@
+*{
+	font-size: 12px;
+	font-family: "宋体";
+}
+.GetNav{
+	background:#E7E7E7;
+	height:30px;
+	width:98%;
+	line-height:30px;
+	margin:0 auto;
+}
+.tabody{
+	margin-top:8px;
+	background:#E7F693;
+}
+.tabody tr{
+	height:30px;
+}
+.getSubmit{
+	margin-left:10%;
+}
