@@ -62,6 +62,8 @@ class User extends	Base
 		$res = $user->GroupSelect();
 		// p($res);
 		// $GroupData = $user->GroupSelect();
+		$GroupArrayData = $user->GroupAllData();
+
 		$GroupData = array();
 		foreach ($res as $key=>$val) {
 			$GroupData[$key]['id'] = $val['id'];
@@ -71,6 +73,7 @@ class User extends	Base
 			$GroupData[$key]['update_time'] = date("Y-m-d H:i:s",$val['update_time']);
 		}
 		$this->assign('GroupData',$GroupData);								
+		$this->assign('GroupArrayData',$GroupArrayData);								
 		return $this->fetch();
 	}
 

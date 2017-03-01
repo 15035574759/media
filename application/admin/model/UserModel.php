@@ -93,4 +93,20 @@ class UserModel extends Model
      {
         return Db::name('auth_group')->insert($data);
      }
+
+     /**
+      * 查询所有权限
+      */
+     function GroupAllData()
+     {
+        $data = Db::name("auth_rule")->where("pid",0)->select();
+        foreach ($data as $key => $val) {
+            $data[$key]['data_list'] = DB::name("auth_rule")->where("pid",$val['id'])->select();
+            foreach ($data[$key]['data_list'] as $kk => $vv) {
+                $data[$key]['data_list'][$kk]['data_lists'] = DB::name("auth_rule")->where("pid",$vv['id'])->select();
+                // if($data[$key]['data_list'][$kk]['data_lists'])
+            }
+        }
+        return $data;
+     }
 }
