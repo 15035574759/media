@@ -4,94 +4,10 @@
 <title>文档管理</title>
 <base href="__PUBLIC__/">
 <link rel="stylesheet" type="text/css" href="javascript/skin/css/base.css">
+<link rel="stylesheet" type="text/css" href="javascript/skin/css/Popup.css">
 
 </head>
 
-<style type="text/css">
-	#choose-box-wrapper{
-		width: 352px;
-		background-color:#000;
-		filter:alpha(opacity=50);
-		background-color: rgba(0, 0, 0, 0.5);
-		padding:10px;
-		border-radius:5px;
-		display:none;
-		font-size: 14px;
-	}
-	#choose-box{
-		border: 1px solid #005EAC;
-		width:350px;
-		height:400px;
-		background-color:white;
-	}
-	#choose-box-title{
-		background:#3777BC;
-		color: white;
-		padding: 4px 10px 5px;
-		font-size: 14px;
-		font-weight: 700;
-		margin: 0;
-	}
-	#choose-box-title span{
-		font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
-	}
-	#choose-a-school{
-		overflow-x: hidden;
-		overflow-y: auto;
-		height: 300px;
-	}
-	#choose-a-school a{
-		height: 18px;
-		line-height: 18px;
-		color:#005EAC;
-		text-decoration: none;
-		font-size: 9pt;
-		font-family: Tahoma, Verdana, STHeiTi, simsun, sans-serif;
-		float: left;
-		width: 160px;
-		margin: 4px 12px;
-		padding-left:10px;
-		background:url(img/2012072500060712.gif) no-repeat 0 9px;
-	}
-	#choose-a-school a:hover{
-		background-color:#005EAC;
-		color:white;
-		cursor:pointer;
-	}
-	
-	#choose-box-bottom{
-		background: #F0F5F8;
-		padding: 8px;
-		text-align: right;
-		border-top: 1px solid #CCC;
-		height:40px;
-	}
-	#choose-box-bottom input{
-		vertical-align: middle;
-		text-align: center;
-		background-color:#005EAC;
-		color:white;
-		border-top: 1px solid #B8D4E8;
-		border-left: 1px solid #B8D4E8;
-		border-right: 1px solid #114680;
-		border-bottom: 1px solid #114680;
-		cursor: pointer;
-		width: 60px;
-		height: 25px;
-		margin-top: 6px;
-		margin-right: 6px;
-	}
-       .div_inline{
-           display: inline;
-       }
-        /* 设置子节点属性 */
-        .tree_node_child{ 
-        	margin-left: 50px;
-        }
-        .tree_node{
-        	/*width:125px;*/
-        }
-</style>
 
 <body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
 <div style="margin-left:10px;">
@@ -156,7 +72,7 @@
 				<div class="tree_content">
 			        <div class="tree_node">
 						{foreach name="GroupArrayData" item="v"}
-				            <div class="div_inline"><input type="button" value="-" class="tree_node_toggle_button"></div>
+				            <div class="div_inline"><input type="button" value="" class="tree_node_toggle_button"></div>
 				            <div class="div_inline tree_node_parent">
 								
 				                <input type="checkbox" name="box" class="tree_node_parent_checkbox" value="{$v.id}">{$v.title} <br>
@@ -164,19 +80,19 @@
 				                <div class="tree_node_child">
 				                    
 				                    <!-- 三级 -->
-				                    {foreach name="$vv.data_lists" item="vvv"}
-										<?php if($vvv['title'] != ""){?>
-				                    		<div class="div_inline"><input type="button" value="-" class="tree_node_toggle_button"></div>
+										<?php if($vv['data_lists'] != array()){?>
+				                    		<div class="div_inline">
+				                    			<input type="button" value="" class="tree_node_toggle_button">
+				                    		</div>
 				                    	<?php
 				                    	}
 				                    	?>
-				                    {/foreach}
 				                    <div class="div_inline tree_node_parent">
-				                            <input type="checkbox" class="tree_node_child_checkbox">{$vv.title}
+		                            <input type="checkbox" name="box" value="{$vv.id}" class="tree_node_child_checkbox">{$vv.title}<br>
 				                        {foreach name="$vv.data_lists" item="vvv"}
-				                        <div class="tree_node_child">
-				                            <input type="checkbox" class="tree_node_child_checkbox">{$vvv.title}<br>
-				                        </div> 
+					                        <div class="tree_node_child">
+					                            <input type="checkbox" name="box" value="{$vv.id}" class="tree_node_child_checkboxs">{$vvv.title}<br>
+					                        </div> 
 				                        {/foreach}	
 				                    </div>
 	
@@ -203,25 +119,7 @@
 	$(function(){
 		
 		//开始分配权限
-				$("#GroupAllot").click(function(){
-		            text = $("input:checkbox[name='box']:checked").map(function(index,elem) {
-		                return $(elem).val();
-		          
-		            }).get().join(',');
-		            alert(text);
-		            // var url = "{:url('GroupAllot')}";
-		            // $.get(url,{group_id:group_id,id:text},function(msg){
-		            // 	if(msg['code'] == 1){
-		            // 		$('#choose-box-wrapper').css("display","none");
-		            // 		alert(msg['data']);
-		            // 	}
-		            // 	else
-		            // 	{
-		            // 		// parent.location.reload()
-		            // 		alert(msg['data']);
-		            // 	}
-		            // },'json')
-				})
+
 		
 	})
 </script>

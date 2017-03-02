@@ -162,9 +162,12 @@ class User extends	Base
 	 */
 	public function GroupAllot()
 	{
+		// echo 111;die;
 		$user = new UserModel();
 		$rule_id = input('param.id/s');
 		$group_id = input('param.group_id/d');
+		// echo $rule_id;"<br>";
+		// echo $group_id;die;
 		$res = $user->GroupAllot($group_id,$rule_id);
 		if($res > 0){
 			$result = array('code'=>1,'data'=>'权限分配成功');
