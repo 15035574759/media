@@ -12,7 +12,7 @@ use think\Db;
 class CarModel extends Model
 {
 	 // 设置当前模型对应的完整数据表名称
-    protected $table = 'car_series';
+    protected $table = 'brand_carseries';
 
     /*
      * 读取车系车型父级
@@ -46,9 +46,9 @@ class CarModel extends Model
      */
     function CarSelectName($id)
     {
-        $res = DB::name($this->table)->field("car_id,car_name")->where('car_id','in',$id)->select();
+        $res = DB::name($this->table)->field("brandcar_id,brandcar_name")->where('brandcar_id','in',$id)->select();
         foreach ($res as $key => $value) {
-            $arr[] = $value['car_name'];;
+            $arr[] = $value['brandcar_name'];;
             $string = join(",",$arr);
         }
         return $string;

@@ -27,7 +27,7 @@ class Brand extends	Base
 			// p($data);
 			$res = $brand->BrandAdd($data);
 			if($res){
-				$this->success('添加成功','show');
+				$this->success('添加成功','BrandShow');
 			}
 			else
 			{
@@ -50,7 +50,8 @@ class Brand extends	Base
 	{
 		$brand = new BrandModel();
 		$nav = new \org\Leftnav;
-		$brandData = $brand->GetSelectAll();
+		$res = $brand->GetSelectAll();
+		$brandData = $nav::rule($res);	
 		$this->assign('brandData',$brandData);									
 		return $this->fetch('brand_show');
 	}

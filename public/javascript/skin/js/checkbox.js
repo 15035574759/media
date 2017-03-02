@@ -65,11 +65,14 @@
                 // 获取需要隐藏或显示的节点
                 var $toggle_node = $(this).parent().next().find(".tree_node_child");
                 $toggle_node.toggle(); // 切换隐藏或显示
+                // alert($toggle_node);die;
                 // 切换按钮的显示
                 if($toggle_node.is(":visible")){
                     $(this).val("-");
+                    $(this).html('<img src="javascript/skin/images/frame/1.02.png" alt="log" />');
                 }else{
                     $(this).val("+");
+                    $(this).html('<img src="javascript/skin/images/frame/1.01.png" alt="log" />');
                 }
             });
 

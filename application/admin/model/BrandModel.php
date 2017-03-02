@@ -5,7 +5,7 @@ use think\Db;
 class BrandModel extends Model
 {
 	 // 设置当前模型对应的完整数据表名称
-    protected $table = 'brand';
+    protected $table = 'brand_carseries';
 
     /**
      * 读取全部数据
@@ -46,7 +46,7 @@ class BrandModel extends Model
             if($val['pid']==$pid){
                 $val['leave']=$leave;
                 $result[]=$val;
-                $this->RecursionAll($data_list,$val['brand_id'],$leave+1);
+                $this->RecursionAll($data_list,$val['brandcar_id'],$leave+1);
             }
         }
         //print_r($result);die;
@@ -67,9 +67,9 @@ class BrandModel extends Model
       */
      public function BrandSelectName($id)
      {
-        $res = DB::name($this->table)->field("brand_id,brand_name")->where('brand_id','in',$id)->select();
+        $res = DB::name($this->table)->field("brandcar_id,brandcar_name")->where('brandcar_id','in',$id)->select();
         foreach ($res as $key => $value) {
-            $arr[] = $value['brand_name'];;
+            $arr[] = $value['brandcar_name'];;
             $string = join(",",$arr);
         }
         return $string;

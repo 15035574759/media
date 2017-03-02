@@ -63,7 +63,7 @@ class User extends	Base
 		// p($res);
 		// $GroupData = $user->GroupSelect();
 		$GroupArrayData = $user->GroupAllData();
-
+		// p($GroupArrayData);
 		$GroupData = array();
 		foreach ($res as $key=>$val) {
 			$GroupData[$key]['id'] = $val['id'];

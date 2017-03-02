@@ -37,7 +37,7 @@ class Project extends	Base
 		// $user = new ProjectModel($_POST);
 		if(input('param.')){
 			$data = input('param.');
-			$data['brand'] = implode(",", $data['brand_id']);
+			$data['brand'] = implode(",", $data['brandcar_id']);
 			$beginPeriod = str_replace("-","/",$data['beginPeriod']);
 			$endPeriod = str_replace("-","/",$data['endPeriod']);
 			$data['period'] = $beginPeriod.'-'.$endPeriod;
@@ -66,8 +66,8 @@ class Project extends	Base
 	function GetBrandAdd()
 	{
 		$brand = new BrandModel();
-		$brand_id = input('param.brand_id');
-		$data = $brand->GetBrandAdd($brand_id);
+		$brandcar_id = input('param.brandcar_id');
+		$data = $brand->GetBrandAdd($brandcar_id);
 		exit(json_encode($data));
 	}
 

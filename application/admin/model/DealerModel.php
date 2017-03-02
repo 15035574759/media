@@ -14,7 +14,7 @@ class DealerModel extends Model
     {
     	return Db::name($this->table)
                         ->alias("d")
-                        ->join('zt_car_series c','d.car_series_id=c.car_id')
+                        ->join('zt_brand_carseries c','d.car_series_id=c.brandcar_id')
                         ->join('zt_project p','d.project_id=p.id')
                         ->order("dealer_id desc")
                         ->select();
@@ -27,7 +27,7 @@ class DealerModel extends Model
     {
         return Db::name($this->table)
                         ->alias("d")
-                        ->join('zt_car_series c','d.car_series_id=c.car_id')
+                        ->join('zt_brand_carseries c','d.car_series_id=c.brandcar_id')
                         ->join('zt_project p','d.project_id=p.id')
                         ->where('d.dealer_id','in',$id)
                         ->order("dealer_id desc")

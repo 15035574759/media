@@ -51,12 +51,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td>车系/车型</td>
+					<td>品牌/车系/车型</td>
 					<td>
 						<select name="car_series_id[]" class="GetCar">
 							<option value="">==请选择==</option>
 							{foreach name="data" item="v"}
-								<option value="{$v.car_id}">{$v.car_name}</option>
+								<option value="{$v.brandcar_id}">{$v.brandcar_name}</option>
 							{/foreach}
 						</select>
 					</td>
@@ -109,7 +109,7 @@
                  if(msg.length){
                     var str = "&nbsp;&nbsp;<select class='GetCar' name='car_series_id[]'>";
                     $(msg).each(function(k,v){
-                    str +="<option value="+v.car_id+">"+v.car_name+"</option>"
+                    str +="<option value="+v.brandcar_id+">"+v.brandcar_name+"</option>"
                     })
                     str += "</select>";
                     _this.nextAll().remove();

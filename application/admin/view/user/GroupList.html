@@ -61,54 +61,50 @@
 </form>
 
 <div id="choose-box-wrapper">
- <div id="choose-box">
+ 	<div id="choose-box">
 		<div id="choose-box-title">
 			<span>权限分配</span>
 			<span style="float:right;curosr:pointer;" id="hide">关闭</span>
 		</div>
-
-
-
 				<div class="tree_content">
 			        <div class="tree_node">
+			        	<!-- 一 级 循 环 -->
 						{foreach name="GroupArrayData" item="v"}
-				            <div class="div_inline"><input type="button" value="" class="tree_node_toggle_button"></div>
+				            <div class="div_inline"><span class="tree_node_toggle_button"><img src="javascript/skin/images/frame/1.02.png"  alt="" /></span></div>
 				            <div class="div_inline tree_node_parent">
 								
 				                <input type="checkbox" name="box" class="tree_node_parent_checkbox" value="{$v.id}">{$v.title} <br>
+				                <!-- 二 级 循 环 -->
 				                {foreach name="v.data_list" item="vv"}
 				                <div class="tree_node_child">
-				                    
-				                    <!-- 三级 -->
+				                		<!-- 判断是否存在三级数组 -->
 										<?php if($vv['data_lists'] != array()){?>
 				                    		<div class="div_inline">
-				                    			<input type="button" value="" class="tree_node_toggle_button">
+				                    			<span class="tree_node_toggle_button"><img src="javascript/skin/images/frame/1.02.png"  alt="" /></span>
 				                    		</div>
 				                    	<?php
 				                    	}
 				                    	?>
 				                    <div class="div_inline tree_node_parent">
 		                            <input type="checkbox" name="box" value="{$vv.id}" class="tree_node_child_checkbox">{$vv.title}<br>
+		                            <!-- 三 级 循 环 -->
 				                        {foreach name="$vv.data_lists" item="vvv"}
 					                        <div class="tree_node_child">
 					                            <input type="checkbox" name="box" value="{$vv.id}" class="tree_node_child_checkboxs">{$vvv.title}<br>
 					                        </div> 
 				                        {/foreach}	
 				                    </div>
-	
 				                </div>
 				                {/foreach}
 				            </div>
 						{/foreach}
 			        </div>
 			    </div>
-
-
-		<div id="choose-box-bottom">
-			<input type="botton" id="GroupAllot" value="分配权限" />
-		</div>
+			<div id="choose-box-bottom">
+				<input type="botton" id="GroupAllot" value="分配权限" />
+			</div>
 	  </div>
-	</div>
+</div>
 
 </body>
 </html>

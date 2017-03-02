@@ -33,12 +33,12 @@ $(document).ready(function(){
 					<td><input type="text" name="project_name"></td>
 				</tr>
 				<tr>
-					<td>品牌</td>
+					<td>品牌/车系/车型</td>
 					<td>
-						<select name="brand_id[]" class="GetBrand">
+						<select name="brandcar_id[]" class="GetBrand">
 							<option value="">==请选择==</option>
 							{foreach name="data" item="v"}
-								<option value="{$v.brand_id}">{$v.brand_name}</option>
+								<option value="{$v.brandcar_id}">{$v.brandcar_name}</option>
 							{/foreach}
 						</select>
 	
@@ -67,20 +67,20 @@ $(document).ready(function(){
 <script>
  $(function(){
      $(document).on('change','.GetBrand',function(){
-         var brand_id = $(this).val();
+         var brandcar_id = $(this).val();
          var _this = $(this);
          // alert(_this);
          $.ajax({
              type : 'get',
              url  : "{:url('GetBrandAdd')}",
-             data : {brand_id : brand_id},
+             data : {brandcar_id : brandcar_id},
              dataType : "json",
              success : function(msg){
                  // alert(msg);
                  if(msg.length){
-                    var str = "&nbsp;&nbsp;<select class='GetBrand' name='brand_id[]'><option value=''>--请选择--</option>";
+                    var str = "&nbsp;&nbsp;<select class='GetBrand' name='brandcar_id[]'><option value=''>--请选择--</option>";
                     $(msg).each(function(k,v){
-                    str +="<option value="+v.brand_id+">"+v.brand_name+"</option>"
+                    str +="<option value="+v.brandcar_id+">"+v.brandcar_name+"</option>"
                     })
                     str += "</select>";
                     _this.nextAll().remove();

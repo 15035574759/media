@@ -25,7 +25,7 @@ class ProjectModel extends Model
      */
     function showAll()
     {
-        return Db::name($this->tables)->alias("p")->join('zt_brand b','p.brand=b.brand_id')->order("id desc")->select();
+        return Db::name($this->tables)->alias("p")->join('zt_brand_carseries b','p.brand=b.brandcar_id')->order("id desc")->select();
     }
 
     /**

@@ -37,17 +37,17 @@
 	</tr>
 	<tr align="center" bgcolor="#FAFAF1" height="22">
 		<td >品牌ID</td>
-		<td >品牌名称</td>
+		<td >品牌(车系/车型)名称</td>
 		<td >是否显示</td>
 		<td >操作</td>
 	</tr>
 
 	{foreach name="brandData" item="v"}
 		<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
-			<td>{$v.brand_id}</td>
+			<td>{$v.brandcar_id}</td>
 			<td align="left">
-				<?php echo str_repeat('&nbsp;&nbsp;',$v['leave'])?>
-		        <?php echo $v['brand_name']?>
+				<!-- <?php echo str_repeat('&nbsp;&nbsp;',$v['leave'])?> -->
+				 {if $v.pid eq 0}<span class="folder-open"></span>{else}<span style="display:inline-block;width:{$v.leftpin}px;"></span><span>|--</span>{/if}{$v.brandcar_name}
 			</td>
 			<td align="left">
 				<?php if($v['start'] == 0){?>

@@ -4,95 +4,6 @@
 <title>文档管理</title>
 <base href="__PUBLIC__/">
 <link rel="stylesheet" type="text/css" href="javascript/skin/css/base.css">
-<script language="javascript">
-function viewArc(aid){
-	if(aid==0) aid = getOneItem();
-	window.open("archives.asp?aid="+aid+"&action=viewArchives");
-}
-function editArc(aid){
-	if(aid==0) aid = getOneItem();
-	location="archives.asp?aid="+aid+"&action=editArchives";
-}
-function updateArc(aid){
-	var qstr=getCheckboxItem();
-	if(aid==0) aid = getOneItem();
-	location="archives.asp?aid="+aid+"&action=makeArchives&qstr="+qstr+"";
-}
-function checkArc(aid){
-	var qstr=getCheckboxItem();
-	if(aid==0) aid = getOneItem();
-	location="archives.asp?aid="+aid+"&action=checkArchives&qstr="+qstr+"";
-}
-function moveArc(aid){
-	var qstr=getCheckboxItem();
-	if(aid==0) aid = getOneItem();
-	location="archives.asp?aid="+aid+"&action=moveArchives&qstr="+qstr+"";
-}
-function adArc(aid){
-	var qstr=getCheckboxItem();
-	if(aid==0) aid = getOneItem();
-	location="archives.asp?aid="+aid+"&action=commendArchives&qstr="+qstr+"";
-}
-function delArc(aid){
-	var qstr=getCheckboxItem();
-	if(aid==0) aid = getOneItem();
-	location="archives.asp?aid="+aid+"&action=delArchives&qstr="+qstr+"";
-}
-
-//获得选中文件的文件名
-function getCheckboxItem()
-{
-	var allSel="";
-	if(document.form2.id.value) return document.form2.id.value;
-	for(i=0;i<document.form2.id.length;i++)
-	{
-		if(document.form2.id[i].checked)
-		{
-			if(allSel=="")
-				allSel=document.form2.id[i].value;
-			else
-				allSel=allSel+"`"+document.form2.id[i].value;
-		}
-	}
-	return allSel;
-}
-
-//获得选中其中一个的id
-function getOneItem()
-{
-	var allSel="";
-	if(document.form2.id.value) return document.form2.id.value;
-	for(i=0;i<document.form2.id.length;i++)
-	{
-		if(document.form2.id[i].checked)
-		{
-				allSel = document.form2.id[i].value;
-				break;
-		}
-	}
-	return allSel;
-}
-function selAll()
-{
-	for(i=0;i<document.form2.id.length;i++)
-	{
-		if(!document.form2.id[i].checked)
-		{
-			document.form2.id[i].checked=true;
-		}
-	}
-}
-function noSelAll()
-{
-	for(i=0;i<document.form2.id.length;i++)
-	{
-		if(document.form2.id[i].checked)
-		{
-			document.form2.id[i].checked=false;
-		}
-	}
-}
-</script>
 </head>
 <body leftmargin="8" topmargin="8" background='skin/images/allbg.gif'>
 
@@ -168,7 +79,7 @@ function noSelAll()
 	<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
 		<td>{$v.id}</td>
 		<td align="left"><u><a href="{:url('dealer/show',['id'=>$v.id])}">{$v.project_name}</a></u></td>
-		<td align="left">{$v.brand_name}</td>
+		<td align="left">{$v.brandcar_name}</td>
 		<td align="left">{$v.period}</td>
 		<td><a href="101">编辑</a> | <a href="101">预览</a> | <a href="101">下载</a></td>
 	</tr>
