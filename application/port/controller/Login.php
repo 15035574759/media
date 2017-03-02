@@ -20,6 +20,12 @@ class Login extends	Controller
 	{
 		$time = time();								
 		$data = input('param.');
+		$dataEmpaty = isset($data) ? $data : "";
+		if(empty($dataEmpty))
+		{
+			$result = array('code'=>1005,'data'=>'数据传入有误');
+			exit(json_encode($result));
+		}
 		$data['time'] = $time;
 		unset($data['key']);
 		$KeyServer = MD5($data['name'].$data['password'].$time);
